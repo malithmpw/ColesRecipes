@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "ColesRecipeApp"
 include(":app")
- 
+include(":coles_core")

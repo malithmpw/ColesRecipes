@@ -1,9 +1,9 @@
 package com.coles.recipes.domain
 
 
-import com.coles.recipes.data.model.RecipesData
-import com.coles.recipes.data.repository.RecipesRepository
-import com.coles.recipes.util.Result
+import com.coles.recipes.data.model.RecipesApiData
+import com.coles.recipes.domain.usecase.GetRecipesUseCase
+import com.coles.recipes.presentaion.common.util.Result
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
@@ -29,8 +29,8 @@ class GetRecipesUseCaseTest {
     @Test
     fun `invoke should return list of recipes when repository succeeds`() = runTest {
 
-        val mockRecipes = RecipesData(listOf())
-        val mockFlow: Flow<Result<RecipesData>> = flowOf(Result.Success(mockRecipes))
+        val mockRecipes = RecipesApiData(listOf())
+        val mockFlow: Flow<Result<RecipesApiData>> = flowOf(Result.Success(mockRecipes))
 
         coEvery { repository.getRecipes() } returns mockFlow
 
@@ -50,7 +50,7 @@ class GetRecipesUseCaseTest {
     fun `invoke should return error when repository fails`() = runTest {
 
         val errorMessage = "Error fetching recipes"
-        val mockFlow: Flow<Result<RecipesData>> = flowOf(Result.Error(Exception(errorMessage)))
+        val mockFlow: Flow<Result<RecipesApiData>> = flowOf(Result.Error(Exception(errorMessage)))
 
         coEvery { repository.getRecipes() } returns mockFlow
 

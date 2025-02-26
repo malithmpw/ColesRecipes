@@ -1,10 +1,10 @@
 package com.coles.recipes.domain
 
-import com.coles.recipes.data.model.IngredientData
-import com.coles.recipes.data.model.RecipeData
-import com.coles.recipes.data.model.RecipeDetailsData
-import com.coles.recipes.data.repository.RecipesRepository
-import com.coles.recipes.util.Result
+import com.coles.recipes.data.model.IngredientApiData
+import com.coles.recipes.data.model.RecipeApiData
+import com.coles.recipes.data.model.RecipeDetailsApiData
+import com.coles.recipes.domain.usecase.GetRecipeUseCase
+import com.coles.recipes.presentaion.common.util.Result
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
@@ -31,12 +31,12 @@ class GetRecipeUseCaseTest {
     fun `invoke should return recipe when repository succeeds`() = runTest {
 
         val recipeId = 1
-        val mockRecipe = RecipeData(
+        val mockRecipe = RecipeApiData(
             "Title",
             "Description",
             "",
             "Description",
-            recipeDetails = RecipeDetailsData(
+            recipeDetails = RecipeDetailsApiData(
                 amountLabel = "Serves",
                 amountNumber = 8,
                 prepLabel = "Prep",
@@ -48,11 +48,11 @@ class GetRecipeUseCaseTest {
                 prepTimeAsMinutes = 20
             ),
             ingredients = listOf(
-                IngredientData("800g butternut pumpkin, peeled, seeded, finely chopped 800g butternut pumpkin, peeled,800g butternut "),
-                IngredientData("250g smooth ricotta")
+                IngredientApiData("800g butternut pumpkin, peeled, seeded, finely chopped 800g butternut pumpkin, peeled,800g butternut "),
+                IngredientApiData("250g smooth ricotta")
             )
         )
-        val mockFlow: Flow<Result<RecipeData?>> = flowOf(Result.Success(mockRecipe))
+        val mockFlow: Flow<Result<RecipeApiData?>> = flowOf(Result.Success(mockRecipe))
 
         coEvery { repository.getRecipe(recipeId) } returns mockFlow
 
@@ -72,7 +72,7 @@ class GetRecipeUseCaseTest {
 
         val recipeId = 1
         val errorMessage = "Error fetching recipe"
-        val mockFlow: Flow<Result<RecipeData?>> = flowOf(Result.Error(Exception(errorMessage)))
+        val mockFlow: Flow<Result<RecipeApiData?>> = flowOf(Result.Error(Exception(errorMessage)))
 
         coEvery { repository.getRecipe(recipeId) } returns mockFlow
 

@@ -3,7 +3,7 @@ package com.coles.recipes.data.repository
 import android.content.Context
 import android.content.res.Resources
 import com.coles.recipes.R
-import com.coles.recipes.util.Result
+import com.coles.recipes.presentaion.common.util.Result
 import io.mockk.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

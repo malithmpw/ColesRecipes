@@ -8,9 +8,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
-import com.coles.recipes.presentation.recipe_details.RecipeDetailsPage
-import com.coles.recipes.presentation.recipes.RecipesPage
-import com.coles.recipes.presentation.splash.SplashScreenPage
+import com.coles.recipes.presentaion.recipeDetails.RecipeDetailsPage
+import com.coles.recipes.presentaion.recipes.RecipesPage
+import com.coles.recipes.presentaion.splash.SplashScreenPage
 
 @Composable
 fun Navigation(modifier: Modifier = Modifier) {
